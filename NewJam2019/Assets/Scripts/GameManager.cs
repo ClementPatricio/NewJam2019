@@ -18,9 +18,30 @@ public class GameManager : MonoBehaviour
         GameManager.gameManager = this;
     }
 
+
+
+    private void onEnable()
+    {
+        controls = new InputMaster();
+        controls.Enable();
+        //controls.Player.RightClick.performed += ctx => SnapObjectToRightHand();
+        //controls.Player.LeftClick.performed += ctx => SnapObjectToLeftHand();
+    }
+
+    public Light light;
+
+
+    public void changeLightColor(Color newColor)
+    {
+        this.light.color = newColor;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.A))
+        {
+            this.changeLightColor(Color.white);
+        }
     }
 }

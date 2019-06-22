@@ -22,7 +22,7 @@ public class InputMaster : IInputActionCollection
                 {
                     ""name"": ""LeftClick"",
                     ""id"": ""5650b3c8-49c3-42d4-af40-37c137be7b16"",
-                    ""expectedControlLayout"": """",
+                    ""expectedControlLayout"": ""Button"",
                     ""continuous"": false,
                     ""passThrough"": false,
                     ""initialStateCheck"": false,
@@ -33,7 +33,7 @@ public class InputMaster : IInputActionCollection
                 {
                     ""name"": ""RightClick"",
                     ""id"": ""23b7dd7e-5a88-433d-9d19-a02265d6fb81"",
-                    ""expectedControlLayout"": """",
+                    ""expectedControlLayout"": ""Button"",
                     ""continuous"": false,
                     ""passThrough"": false,
                     ""initialStateCheck"": false,
