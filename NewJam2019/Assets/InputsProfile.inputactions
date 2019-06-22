@@ -1,0 +1,60 @@
+{
+    "name": "InputsProfile",
+    "maps": [
+        {
+            "name": "ActionMap",
+            "id": "57f53c65-81d4-49d9-8dc1-1ed54fc4f22a",
+            "actions": [
+                {
+                    "name": "RightClick",
+                    "id": "581958f6-f66a-4363-a4aa-6f8b8fa5a68c",
+                    "expectedControlLayout": "",
+                    "continuous": false,
+                    "passThrough": false,
+                    "initialStateCheck": false,
+                    "processors": "",
+                    "interactions": "",
+                    "bindings": []
+                },
+                {
+                    "name": "LeftClick",
+                    "id": "68fbd8af-2af5-4e95-a908-f876aeee4120",
+                    "expectedControlLayout": "",
+                    "continuous": false,
+                    "passThrough": false,
+                    "initialStateCheck": false,
+                    "processors": "",
+                    "interactions": "",
+                    "bindings": []
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a4c50c11-c487-48a1-973d-dfafddbd8530",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "6028acb4-6cd5-4299-afc9-7adf651805dc",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
