@@ -29,7 +29,7 @@ public class CameraHeadMovementScript : MonoBehaviour
         eyesAxis.x = clampHeadAxis(eyesAxis.x + mouseY);
 
         head.transform.localEulerAngles = headAxis;
-        this.transform.localEulerAngles = eyesAxis;
+        this.transform.localEulerAngles = new Vector3(eyesAxis.x, 0, 0);
     }
 
     float clampHeadAxis(float value)
