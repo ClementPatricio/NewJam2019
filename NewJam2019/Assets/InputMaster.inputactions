@@ -1,13 +1,13 @@
 {
-    "name": "InputsProfile",
+    "name": "InputMaster",
     "maps": [
         {
-            "name": "ActionMap",
-            "id": "57f53c65-81d4-49d9-8dc1-1ed54fc4f22a",
+            "name": "Player",
+            "id": "993b8f0d-a238-41fc-81c0-bfb8d314f4a7",
             "actions": [
                 {
-                    "name": "RightClick",
-                    "id": "581958f6-f66a-4363-a4aa-6f8b8fa5a68c",
+                    "name": "LeftClick",
+                    "id": "5650b3c8-49c3-42d4-af40-37c137be7b16",
                     "expectedControlLayout": "",
                     "continuous": false,
                     "passThrough": false,
@@ -17,8 +17,8 @@
                     "bindings": []
                 },
                 {
-                    "name": "LeftClick",
-                    "id": "68fbd8af-2af5-4e95-a908-f876aeee4120",
+                    "name": "RightClick",
+                    "id": "23b7dd7e-5a88-433d-9d19-a02265d6fb81",
                     "expectedControlLayout": "",
                     "continuous": false,
                     "passThrough": false,
@@ -31,24 +31,24 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "a4c50c11-c487-48a1-973d-dfafddbd8530",
-                    "path": "<Mouse>/rightButton",
+                    "id": "a87ecb3f-938a-4637-987a-215f67a2cc60",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RightClick",
+                    "action": "LeftClick",
                     "isComposite": false,
                     "isPartOfComposite": false,
                     "modifiers": ""
                 },
                 {
                     "name": "",
-                    "id": "6028acb4-6cd5-4299-afc9-7adf651805dc",
-                    "path": "<Mouse>/leftButton",
+                    "id": "a5956970-6dfd-436a-a692-cb6f19b032b6",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftClick",
+                    "action": "RightClick",
                     "isComposite": false,
                     "isPartOfComposite": false,
                     "modifiers": ""
