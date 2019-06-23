@@ -18,19 +18,25 @@ public class GameManager : MonoBehaviour
     public float speed;
     public Color baseColor;
     public Color nextColor;
+    public Light light;
 
-    static Color love;
-    static Color anger;
-    static Color despair;
-    static Color solitude;
-    static Color Life;
+    public AudioClip[] sounds = new AudioClip[7];
+
+    public AudioSource combiAudioSource;
+
+    static Color love = new Color();
+    static Color anger = new Color();
+    static Color despair = new Color();
+    static Color solitude = new Color();
+    static Color life = new Color();
+
+
+
 
     void Awake()
     {
         GameManager.gameManager = this;
     }
-
-
 
     private void onEnable()
     {
@@ -39,9 +45,6 @@ public class GameManager : MonoBehaviour
         //controls.Player.RightClick.performed += ctx => SnapObjectToRightHand();
         //controls.Player.LeftClick.performed += ctx => SnapObjectToLeftHand();
     }
-
-    public Light light;
-
 
     public void changeLightColor(Color newColor)
     {
@@ -68,4 +71,13 @@ public class GameManager : MonoBehaviour
             changingLight = false;
         }
     }
+
+    void changeMood(Color color, int soundIndex)
+    {
+        this.changeLightColor(color);
+        this.GetComponent<AudioSource>().clip = this.sounds[soundIndex];
+        this.GetComponent<AudioSource>().Play();
+    }
+
+
 }
