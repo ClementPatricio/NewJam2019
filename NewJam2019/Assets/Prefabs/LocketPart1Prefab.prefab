@@ -10,7 +10,12 @@ PrefabInstance:
     - target: {fileID: 8729402659152010306, guid: 8a5e2bef2d0a3ab41bd7403922535700,
         type: 3}
       propertyPath: m_Name
-      value: Memories
+      value: LocketPart1Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8729402659152010306, guid: 8a5e2bef2d0a3ab41bd7403922535700,
+        type: 3}
+      propertyPath: m_TagString
+      value: Love
       objectReference: {fileID: 0}
     - target: {fileID: 7104815081955776367, guid: 8a5e2bef2d0a3ab41bd7403922535700,
         type: 3}

@@ -14,6 +14,16 @@ public class GameManager : MonoBehaviour
     public InputMaster controls;
     public bool leftHandOccupied;
     public bool rightHandOccupied;
+    public bool changingLight;
+    public float speed;
+    public Color baseColor;
+    public Color nextColor;
+
+    static Color love;
+    static Color anger;
+    static Color despair;
+    static Color solitude;
+    static Color Life;
 
     void Awake()
     {
@@ -35,7 +45,10 @@ public class GameManager : MonoBehaviour
 
     public void changeLightColor(Color newColor)
     {
-        this.light.color = newColor;
+        this.baseColor = this.light.color;
+        this.changingLight = true;
+        this.nextColor = newColor;
+        
     }
 
     // Update is called once per frame
@@ -44,6 +57,15 @@ public class GameManager : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             this.changeLightColor(Color.white);
+        }
+
+        if (changingLight)
+        {
+            this.light.color = Color.Lerp(this.light.color, nextColor, .01f);
+        }
+        if(this.light.color.Equals(nextColor))
+        {
+            changingLight = false;
         }
     }
 }
