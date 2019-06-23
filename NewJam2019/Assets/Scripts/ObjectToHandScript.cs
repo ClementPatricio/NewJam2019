@@ -11,6 +11,7 @@ public class ObjectToHandScript : MonoBehaviour
     private Vector3 lastPos;
     private bool firstframe;
     private bool centered;
+    private float rotSpeed = 150;
 
 
     /*private void onEnable()
@@ -42,6 +43,17 @@ public class ObjectToHandScript : MonoBehaviour
             }
         }
     }
+
+    private void OnMouseDrag() {
+        if (this.centered) {
+            float rotX = Input.GetAxis("Mouse X") * rotSpeed * Mathf.Deg2Rad;
+            float rotY = Input.GetAxis("Mouse Y") * rotSpeed * Mathf.Deg2Rad;
+
+            this.transform.Rotate(Vector3.up, -rotX);
+            this.transform.Rotate(Vector3.right, rotY);
+        }
+    }
+
     private void Update()
     {
         if (!GameManager.gameManager.itemObserverMode) {
