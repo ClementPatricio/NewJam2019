@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public GameObject rightHand;
     public GameObject leftHand;
     public InputMaster controls;
+    public bool leftHandOccupied;
+    public bool rightHandOccupied;
 
     void Awake()
     {

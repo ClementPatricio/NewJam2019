@@ -9,6 +9,7 @@ public class ObjectToHandScript : MonoBehaviour
     private bool rightSnapped;
     private bool leftSnapped;
     private Vector3 lastPos;
+    private bool firstframe;
 
 
     /*private void onEnable()
@@ -22,31 +23,43 @@ public class ObjectToHandScript : MonoBehaviour
     private void OnMouseOver()
     {
         
-        if (Input.GetMouseButtonDown(0)&& !leftSnapped)
+        if (Input.GetMouseButtonDown(0)&& !leftSnapped && !GameManager.gameManager.leftHandOccupied)
         {
             this.SnapObjectToLeftHand();
             this.leftSnapped = true;
+            this.firstframe = true;
+            GameManager.gameManager.leftHandOccupied = true;
             return;
         }
-        if (Input.GetMouseButtonDown(1) && !rightSnapped)
+        if (Input.GetMouseButtonDown(1) && !rightSnapped && !GameManager.gameManager.rightHandOccupied)
         {
             this.SnapObjectToRightHand();
             this.rightSnapped = true;
+            this.firstframe = true;
+            GameManager.gameManager.rightHandOccupied = true;
             return;
         }
-        if (Input.GetMouseButtonDown(0) && leftSnapped)
+    }
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && leftSnapped && !firstframe)
         {
             this.ReturnObjectFromLeftHand();
             this.leftSnapped = false;
+            GameManager.gameManager.leftHandOccupied = false;
             return;
         }
-        if (Input.GetMouseButtonDown(1) && rightSnapped)
+        if (Input.GetMouseButtonDown(1) && rightSnapped && !firstframe)
         {
             this.ReturnObjectFromRightHand();
             this.rightSnapped = false;
+            GameManager.gameManager.rightHandOccupied = false;
             return;
         }
-
+        if (firstframe)
+        {
+            firstframe = false;
+        }
     }
 
     void SnapObjectToRightHand()
@@ -71,7 +84,7 @@ public class ObjectToHandScript : MonoBehaviour
 
     void ReturnObjectFromRightHand()
     {
-        //this.transform.position = lastPos;
+        this.transform.position = getPosToLand();
         this.gameObject.AddComponent<Rigidbody>();
         this.GetComponent<Rigidbody>().WakeUp();
         this.transform.parent = null;
@@ -79,9 +92,19 @@ public class ObjectToHandScript : MonoBehaviour
 
     void ReturnObjectFromLeftHand()
     {
-        //this.transform.position = lastPos;
+        this.transform.position = getPosToLand();
         this.gameObject.AddComponent<Rigidbody>();
         this.GetComponent<Rigidbody>().useGravity = true;
         this.transform.parent = null;
     }
+
+    Vector3 getPosToLand()
+    {
+        RaycastHit hit;
+        Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit);
+        float posZ = hit.distance;
+        Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, posZ));
+        return pos;
+    }
+    
 }
