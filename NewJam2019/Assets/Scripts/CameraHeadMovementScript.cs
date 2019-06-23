@@ -13,23 +13,25 @@ public class CameraHeadMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 headAxis;
-        Vector3 eyesAxis;
+        if (!GameManager.gameManager.itemObserverMode) {
+            Vector3 headAxis;
+            Vector3 eyesAxis;
 
-        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * this.mouseSensitivity;
-        float mouseY = -Input.GetAxis("Mouse Y") * Time.deltaTime * this.mouseSensitivity;
+            float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * this.mouseSensitivity;
+            float mouseY = -Input.GetAxis("Mouse Y") * Time.deltaTime * this.mouseSensitivity;
 
-        //head.transform.Rotate(new Vector3(0, mouseX, 0));
-        //transform.Rotate(new Vector3(mouseY, 0, 0));
+            //head.transform.Rotate(new Vector3(0, mouseX, 0));
+            //transform.Rotate(new Vector3(mouseY, 0, 0));
 
-        headAxis = head.transform.localEulerAngles;
-        eyesAxis = this.transform.localEulerAngles;
+            headAxis = head.transform.localEulerAngles;
+            eyesAxis = this.transform.localEulerAngles;
 
-        headAxis.y = clampHeadAxis(headAxis.y + mouseX);
-        eyesAxis.x = clampHeadAxis(eyesAxis.x + mouseY);
+            headAxis.y = clampHeadAxis(headAxis.y + mouseX);
+            eyesAxis.x = clampHeadAxis(eyesAxis.x + mouseY);
 
-        head.transform.localEulerAngles = headAxis;
-        this.transform.localEulerAngles = new Vector3(eyesAxis.x, 0, 0);
+            head.transform.localEulerAngles = headAxis;
+            this.transform.localEulerAngles = new Vector3(eyesAxis.x, 0, 0);
+        }
     }
 
     float clampHeadAxis(float value)
