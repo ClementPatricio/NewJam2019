@@ -39,6 +39,6 @@ public class CameraHeadMovementScript : MonoBehaviour
 
     float clampEyesAxis(float value)
     {
-        return Mathf.Clamp(value, 30f, 150f);
+        return Mathf.Clamp(value, 0f, 120f);
     }
 }

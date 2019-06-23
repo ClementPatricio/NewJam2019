@@ -56,6 +56,7 @@ public class ObjectToHandScript : MonoBehaviour
         this.transform.position = handPosition.position;
         this.transform.SetParent(handPosition.parent);
         this.GetComponent<Rigidbody>().useGravity = false;
+        Destroy(this.GetComponent<Rigidbody>());
     }
 
     void SnapObjectToLeftHand()
@@ -65,18 +66,21 @@ public class ObjectToHandScript : MonoBehaviour
         this.transform.position = handPosition.position;
         this.transform.SetParent(handPosition.parent);
         this.GetComponent<Rigidbody>().useGravity = false;
+        Destroy(this.GetComponent<Rigidbody>());
     }
 
     void ReturnObjectFromRightHand()
     {
         //this.transform.position = lastPos;
-        this.GetComponent<Rigidbody>().useGravity = true;
+        this.gameObject.AddComponent<Rigidbody>();
+        this.GetComponent<Rigidbody>().WakeUp();
         this.transform.parent = null;
     }
 
     void ReturnObjectFromLeftHand()
     {
         //this.transform.position = lastPos;
+        this.gameObject.AddComponent<Rigidbody>();
         this.GetComponent<Rigidbody>().useGravity = true;
         this.transform.parent = null;
     }
