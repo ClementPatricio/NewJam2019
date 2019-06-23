@@ -11,10 +11,13 @@ public class GameManager : MonoBehaviour
 
     public GameObject rightHand;
     public GameObject leftHand;
+    public GameObject rightCenter;
+    public GameObject leftCenter;
     public InputMaster controls;
     public bool leftHandOccupied;
     public bool rightHandOccupied;
     public bool changingLight;
+    public bool itemObserverMode;
     public float speed;
     public Color baseColor;
     public Color nextColor;
@@ -66,6 +69,19 @@ public class GameManager : MonoBehaviour
         if(this.light.color.Equals(nextColor))
         {
             changingLight = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+            if (leftHandOccupied && rightHandOccupied) {
+                if (!itemObserverMode) {
+                    itemObserverMode = true;
+                    //TODO: Hide Cursor, Blur Background
+                } else {
+                    itemObserverMode = false;
+                    //TODO: Show Cursor, unblur Background
+                }
+
+            }
         }
     }
 }

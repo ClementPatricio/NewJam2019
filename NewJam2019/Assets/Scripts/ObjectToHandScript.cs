@@ -10,6 +10,7 @@ public class ObjectToHandScript : MonoBehaviour
     private bool leftSnapped;
     private Vector3 lastPos;
     private bool firstframe;
+    private bool centered;
 
 
     /*private void onEnable()
@@ -22,43 +23,67 @@ public class ObjectToHandScript : MonoBehaviour
 
     private void OnMouseOver()
     {
-        
-        if (Input.GetMouseButtonDown(0)&& !leftSnapped && !GameManager.gameManager.leftHandOccupied)
-        {
-            this.SnapObjectToLeftHand();
-            this.leftSnapped = true;
-            this.firstframe = true;
-            GameManager.gameManager.leftHandOccupied = true;
-            return;
-        }
-        if (Input.GetMouseButtonDown(1) && !rightSnapped && !GameManager.gameManager.rightHandOccupied)
-        {
-            this.SnapObjectToRightHand();
-            this.rightSnapped = true;
-            this.firstframe = true;
-            GameManager.gameManager.rightHandOccupied = true;
-            return;
+        if (!GameManager.gameManager.itemObserverMode) {
+            if (Input.GetMouseButtonDown(0)&& !leftSnapped && !GameManager.gameManager.leftHandOccupied)
+            {
+                this.SnapObjectToLeftHand();
+                this.leftSnapped = true;
+                this.firstframe = true;
+                GameManager.gameManager.leftHandOccupied = true;
+                return;
+            }
+            if (Input.GetMouseButtonDown(1) && !rightSnapped && !GameManager.gameManager.rightHandOccupied)
+            {
+                this.SnapObjectToRightHand();
+                this.rightSnapped = true;
+                this.firstframe = true;
+                GameManager.gameManager.rightHandOccupied = true;
+                return;
+            }
         }
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && leftSnapped && !firstframe)
-        {
-            this.ReturnObjectFromLeftHand();
-            this.leftSnapped = false;
-            GameManager.gameManager.leftHandOccupied = false;
-            return;
-        }
-        if (Input.GetMouseButtonDown(1) && rightSnapped && !firstframe)
-        {
-            this.ReturnObjectFromRightHand();
-            this.rightSnapped = false;
-            GameManager.gameManager.rightHandOccupied = false;
-            return;
-        }
-        if (firstframe)
-        {
-            firstframe = false;
+        if (!GameManager.gameManager.itemObserverMode) {
+
+            if (this.centered) {
+                if (this.rightSnapped) {
+                    this.UnSnapObjectFromRightCenter();
+                }
+                else if (this.leftSnapped) {
+                    this.UnSnapObjectFromLeftCenter();
+                }
+                this.centered = false;
+            }
+
+            if (Input.GetMouseButtonDown(0) && leftSnapped && !firstframe)
+            {
+                this.ReturnObjectFromLeftHand();
+                this.leftSnapped = false;
+                GameManager.gameManager.leftHandOccupied = false;
+                return;
+            }
+            if (Input.GetMouseButtonDown(1) && rightSnapped && !firstframe)
+            {
+                this.ReturnObjectFromRightHand();
+                this.rightSnapped = false;
+                GameManager.gameManager.rightHandOccupied = false;
+                return;
+            }
+            if (firstframe)
+            {
+                firstframe = false;
+            }
+        } else {
+            if (!this.centered) {
+                if (this.rightSnapped) {
+                    this.SnapObjectToRightCenter();
+                }
+                else if (this.leftSnapped) {
+                    this.SnapObjectToLeftCenter();
+                }
+                this.centered = true;
+            }
         }
     }
 
@@ -97,6 +122,26 @@ public class ObjectToHandScript : MonoBehaviour
         this.gameObject.AddComponent<Rigidbody>();
         this.GetComponent<Rigidbody>().useGravity = true;
         this.transform.parent = null;
+    }
+
+    void SnapObjectToRightCenter() {
+        Transform centerPosition = GameManager.gameManager.rightCenter.transform;
+        this.transform.position = centerPosition.position;
+    }
+
+    void SnapObjectToLeftCenter() {
+        Transform centerPosition = GameManager.gameManager.leftCenter.transform;
+        this.transform.position = centerPosition.position;
+    }
+
+    void UnSnapObjectFromRightCenter() {
+        Transform handPosition = GameManager.gameManager.rightHand.transform;
+        this.transform.position = handPosition.position;
+    }
+
+    void UnSnapObjectFromLeftCenter() {
+        Transform handPosition = GameManager.gameManager.leftHand.transform;
+        this.transform.position = handPosition.position;
     }
 
     Vector3 getPosToLand()
