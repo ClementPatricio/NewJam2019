@@ -61,9 +61,11 @@ public class ObjectToHandScript : MonoBehaviour
             if (this.centered) {
                 if (this.rightSnapped) {
                     this.UnSnapObjectFromRightCenter();
+                    GameManager.gameManager.rightObject = null;
                 }
                 else if (this.leftSnapped) {
                     this.UnSnapObjectFromLeftCenter();
+                    GameManager.gameManager.leftObject = null;
                 }
                 this.centered = false;
             }
@@ -90,9 +92,11 @@ public class ObjectToHandScript : MonoBehaviour
             if (!this.centered) {
                 if (this.rightSnapped) {
                     this.SnapObjectToRightCenter();
+                    GameManager.gameManager.rightObject = this.gameObject;
                 }
                 else if (this.leftSnapped) {
                     this.SnapObjectToLeftCenter();
+                    GameManager.gameManager.leftObject = this.gameObject;
                 }
                 this.centered = true;
             }

@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public GameObject rightCenter;
     public GameObject leftCenter;
     public InputMaster controls;
+    public GameObject leftObject;
+    public GameObject rightObject;
     public bool leftHandOccupied;
     public bool rightHandOccupied;
     public bool changingLight;
@@ -22,10 +24,14 @@ public class GameManager : MonoBehaviour
     public Color baseColor;
     public Color nextColor;
     public Light light;
+    
 
     public AudioClip[] sounds = new AudioClip[7];
 
     public AudioSource combiAudioSource;
+
+    public Canvas baseUI;
+    public Canvas shiftUI;
 
     static Color love = new Color();
     static Color anger = new Color();
@@ -78,12 +84,31 @@ public class GameManager : MonoBehaviour
             if (leftHandOccupied && rightHandOccupied) {
                 if (!itemObserverMode) {
                     itemObserverMode = true;
+                    this.baseUI.enabled = false;
+                    this.shiftUI.gameObject.SetActive(true);
                     //TODO: Hide Cursor, Blur Background
                 } else {
                     itemObserverMode = false;
+                    GameManager.gameManager.shiftUI.gameObject.SetActive(false);
+                    GameManager.gameManager.baseUI.enabled = true;
                     //TODO: Show Cursor, unblur Background
                 }
 
+            }
+        }
+
+        if (this.itemObserverMode && Input.GetKeyDown(KeyCode.E))
+        {
+            if(this.leftObject.tag == this.rightObject.tag)
+            {
+                this.combiAudioSource.clip = this.sounds[5];
+                this.combiAudioSource.Play();
+                this.combine(this.leftObject.tag);
+            }
+            else
+            {
+                this.combiAudioSource.clip = this.sounds[6];
+                this.combiAudioSource.Play();
             }
         }
     }
@@ -93,6 +118,37 @@ public class GameManager : MonoBehaviour
         this.changeLightColor(color);
         this.GetComponent<AudioSource>().clip = this.sounds[soundIndex];
         this.GetComponent<AudioSource>().Play();
+    }
+
+    void combine(string mood)
+    {
+        Destroy(this.leftObject);
+        Destroy(this.rightObject);
+        switch (mood)
+        {
+            case "anger":
+                this.changeMood(GameManager.anger, 0);
+                
+                break;
+            case "love":
+                this.changeMood(GameManager.love, 2);
+
+                break;
+            case "despair":
+                this.changeMood(GameManager.despair, 1);
+
+                break;
+            case "solitude":
+                this.changeMood(GameManager.solitude, 4);
+
+                break;
+            case "life":
+                this.changeMood(GameManager.life, 3);
+
+                break;
+            default:
+                break;
+        }
     }
 
 
