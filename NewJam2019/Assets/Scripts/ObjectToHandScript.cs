@@ -70,6 +70,7 @@ public class ObjectToHandScript : MonoBehaviour
         this.transform.SetParent(handPosition.parent);
         this.GetComponent<Rigidbody>().useGravity = false;
         Destroy(this.GetComponent<Rigidbody>());
+        this.GetComponent<Renderer>().materials = new Material[3];
     }
 
     void SnapObjectToLeftHand()
