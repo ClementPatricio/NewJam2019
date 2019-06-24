@@ -191,6 +191,8 @@ public class GameManager : MonoBehaviour
                 this.gameObject.GetComponent<FinalScript>().enabled = true;
                 this.gameObject.GetComponent<AudioSource>().loop = false;
                 this.finalCombi = true;
+                this.baseUI.gameObject.SetActive(false);
+                this.shiftUI.gameObject.SetActive(false);
                 break;
             default:
                 break;

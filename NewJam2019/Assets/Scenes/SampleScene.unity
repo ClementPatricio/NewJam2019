@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2928,15 +2928,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3916817994217579155, guid: 47497eb8168c6bf4a86839df0a17273e,
-        type: 3}
-      propertyPath: m_Name
-      value: CinemaTicketPrefab
-      objectReference: {fileID: 0}
     - target: {fileID: 2477233759681179189, guid: 47497eb8168c6bf4a86839df0a17273e,
         type: 3}
       propertyPath: m_Convex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3916817994217579155, guid: 47497eb8168c6bf4a86839df0a17273e,
+        type: 3}
+      propertyPath: m_Name
+      value: CinemaTicketPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 3307643159838108094, guid: 47497eb8168c6bf4a86839df0a17273e,
         type: 3}
@@ -3510,11 +3510,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3916817994217579155, guid: 4569065998e9984489f174f9ae6b7d51,
-        type: 3}
-      propertyPath: m_Name
-      value: LilyPrefab
-      objectReference: {fileID: 0}
     - target: {fileID: -2961321361575026636, guid: 4569065998e9984489f174f9ae6b7d51,
         type: 3}
       propertyPath: m_IsTrigger
@@ -3524,6 +3519,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Convex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3916817994217579155, guid: 4569065998e9984489f174f9ae6b7d51,
+        type: 3}
+      propertyPath: m_Name
+      value: LilyPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 3307643159838108094, guid: 4569065998e9984489f174f9ae6b7d51,
         type: 3}
