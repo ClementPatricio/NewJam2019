@@ -26,9 +26,7 @@ public class GameManager : MonoBehaviour
     public Color nextColor;
     public Light light;
     public bool finalCombi = false;
-    public Canvas canvas;
-    public Image fondFinal;
-    public Image logo;
+    public GameObject eyes;
     
 
     public AudioClip[] sounds = new AudioClip[7];
@@ -93,14 +91,15 @@ public class GameManager : MonoBehaviour
                     itemObserverMode = true;
                     this.baseUI.enabled = false;
                     this.shiftUI.gameObject.SetActive(true);
-                    //TODO: Hide Cursor, Blur Background
+                    Destroy(this.eyes.GetComponent<SimpleSmoothMouseLook>());
+                    Cursor.lockState = CursorLockMode.None;
                 }
                 else
                 {
                     itemObserverMode = false;
                     GameManager.gameManager.shiftUI.gameObject.SetActive(false);
                     GameManager.gameManager.baseUI.enabled = true;
-                    //TODO: Show Cursor, unblur Background
+                    this.eyes.AddComponent<SimpleSmoothMouseLook>().lockCursor = true;
                 }
 
             }
@@ -111,7 +110,7 @@ public class GameManager : MonoBehaviour
                     itemObserverMode = false;
                     GameManager.gameManager.shiftUI.gameObject.SetActive(false);
                     GameManager.gameManager.baseUI.enabled = true;
-                    //TODO: Show Cursor, unblur Background
+                    this.eyes.AddComponent<SimpleSmoothMouseLook>().lockCursor = true;
                 }
             }
             
@@ -190,6 +189,7 @@ public class GameManager : MonoBehaviour
             case "Life":
                 this.changeMood(GameManager.life, 3);
                 this.gameObject.GetComponent<FinalScript>().enabled = true;
+                this.gameObject.GetComponent<AudioSource>().loop = false;
                 this.finalCombi = true;
                 break;
             default:
