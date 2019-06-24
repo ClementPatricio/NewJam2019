@@ -24,7 +24,7 @@ public class FinalScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (!fondOk)
         {
             this.i++;
@@ -36,9 +36,9 @@ public class FinalScript : MonoBehaviour
                 fondOk = true;
             }
         }
-        if(fondOk && !logoOk)
+        if (fondOk && !logoOk)
         {
-            if(this.j < 355)
+            if (this.j < 355)
             {
                 j++;
             }
@@ -52,7 +52,7 @@ public class FinalScript : MonoBehaviour
                     this.j = 0;
                 }
             }
-            
+
         }
         if (logoOk && !creditsOk)
         {
@@ -71,7 +71,7 @@ public class FinalScript : MonoBehaviour
                     this.credits2.color = new Color32(255, 255, 255, this.i);
                     i++;
                 }
-                if(this.i >= 255)
+                if (this.i >= 255)
                 {
                     this.creditsOk = true;
                 }
