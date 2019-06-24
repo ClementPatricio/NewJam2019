@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,20 +25,26 @@ public class GameManager : MonoBehaviour
     public Color baseColor;
     public Color nextColor;
     public Light light;
+    public bool finalCombi = false;
+    public Canvas canvas;
+    public Image fondFinal;
+    public Image logo;
     
 
     public AudioClip[] sounds = new AudioClip[7];
+
+    public GameObject[] prefabs = new GameObject[4];
 
     public AudioSource combiAudioSource;
 
     public Canvas baseUI;
     public Canvas shiftUI;
 
-    static Color love = new Color();
-    static Color anger = new Color();
-    static Color despair = new Color();
-    static Color solitude = new Color();
-    static Color life = new Color();
+    static Color love = new Color32(202, 152, 199, 255);
+    static Color anger = new Color32(212, 137, 137, 255);
+    static Color despair = new Color32(163, 199, 207, 255);
+    static Color solitude = new Color32(185, 217, 204, 255);
+    static Color life = new Color32(255, 255, 255, 255);
 
 
 
@@ -66,11 +73,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (finalCombi)
         {
-            this.changeLightColor(Color.white);
+            this.light.range++; // = this.light.range + 10;
+            return;
         }
-
         if (changingLight)
         {
             this.light.color = Color.Lerp(this.light.color, nextColor, .01f);
@@ -87,7 +94,9 @@ public class GameManager : MonoBehaviour
                     this.baseUI.enabled = false;
                     this.shiftUI.gameObject.SetActive(true);
                     //TODO: Hide Cursor, Blur Background
-                } else {
+                }
+                else
+                {
                     itemObserverMode = false;
                     GameManager.gameManager.shiftUI.gameObject.SetActive(false);
                     GameManager.gameManager.baseUI.enabled = true;
@@ -95,6 +104,17 @@ public class GameManager : MonoBehaviour
                 }
 
             }
+            else
+            {
+                if (itemObserverMode)
+                {
+                    itemObserverMode = false;
+                    GameManager.gameManager.shiftUI.gameObject.SetActive(false);
+                    GameManager.gameManager.baseUI.enabled = true;
+                    //TODO: Show Cursor, unblur Background
+                }
+            }
+            
         }
 
         if (this.itemObserverMode && Input.GetKeyDown(KeyCode.E))
@@ -124,31 +144,59 @@ public class GameManager : MonoBehaviour
     {
         Destroy(this.leftObject);
         Destroy(this.rightObject);
+        this.leftHandOccupied = false;
+        this.rightHandOccupied = false;
+        this.leftObject = null;
+        this.rightObject = null;
+        this.light.range++;
         switch (mood)
         {
-            case "anger":
+            case "Anger":
                 this.changeMood(GameManager.anger, 0);
-                
+                this.leftObject = Instantiate(this.prefabs[0], leftCenter.transform.position, Quaternion.identity);
+                this.leftObject.AddComponent<ObjectToHandScript>();
+                this.leftObject.GetComponent<ObjectToHandScript>().leftSnapped = true;
+                this.leftObject.GetComponent<ObjectToHandScript>().centered = true;
+                this.leftObject.transform.SetParent(GameManager.gameManager.leftHand.transform.parent);
+                Destroy(this.leftObject.GetComponent<Rigidbody>());
                 break;
-            case "love":
+            case "Love":
                 this.changeMood(GameManager.love, 2);
-
+                this.leftObject = Instantiate(this.prefabs[2], leftCenter.transform.position, Quaternion.identity);
+                this.leftObject.AddComponent<ObjectToHandScript>();
+                this.leftObject.GetComponent<ObjectToHandScript>().leftSnapped = true;
+                this.leftObject.GetComponent<ObjectToHandScript>().centered = true;
+                this.leftObject.transform.SetParent(GameManager.gameManager.leftHand.transform.parent);
+                Destroy(this.leftObject.GetComponent<Rigidbody>());
                 break;
-            case "despair":
+            case "Despair":
                 this.changeMood(GameManager.despair, 1);
-
+                this.leftObject = Instantiate(this.prefabs[1], leftCenter.transform.position, Quaternion.identity);
+                this.leftObject.AddComponent<ObjectToHandScript>();
+                this.leftObject.GetComponent<ObjectToHandScript>().leftSnapped = true;
+                this.leftObject.GetComponent<ObjectToHandScript>().centered = true;
+                this.leftObject.transform.SetParent(GameManager.gameManager.leftHand.transform.parent);
+                Destroy(this.leftObject.GetComponent<Rigidbody>());
                 break;
-            case "solitude":
+            case "Solitude":
                 this.changeMood(GameManager.solitude, 4);
-
+                this.leftObject = Instantiate(this.prefabs[3], leftCenter.transform.position, Quaternion.identity);
+                this.leftObject.AddComponent<ObjectToHandScript>();
+                this.leftObject.GetComponent<ObjectToHandScript>().leftSnapped = true;
+                this.leftObject.GetComponent<ObjectToHandScript>().centered = true;
+                this.leftObject.transform.SetParent(GameManager.gameManager.leftHand.transform.parent);
+                Destroy(this.leftObject.GetComponent<Rigidbody>());
                 break;
-            case "life":
+            case "Life":
                 this.changeMood(GameManager.life, 3);
-
+                this.gameObject.GetComponent<FinalScript>().enabled = true;
+                this.finalCombi = true;
                 break;
             default:
                 break;
         }
+        
+
     }
 
 

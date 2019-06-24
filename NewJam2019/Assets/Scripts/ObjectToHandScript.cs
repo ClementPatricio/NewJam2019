@@ -6,11 +6,11 @@ using UnityEngine.InputSystem;
 public class ObjectToHandScript : MonoBehaviour
 {
     public InputMaster controls;
-    private bool rightSnapped;
-    private bool leftSnapped;
+    public bool rightSnapped;
+    public bool leftSnapped;
     private Vector3 lastPos;
     private bool firstframe;
-    private bool centered;
+    public bool centered;
     private float rotSpeed = 150;
 
 
@@ -111,7 +111,6 @@ public class ObjectToHandScript : MonoBehaviour
         this.transform.SetParent(handPosition.parent);
         this.GetComponent<Rigidbody>().useGravity = false;
         Destroy(this.GetComponent<Rigidbody>());
-        //this.GetComponent<Renderer>().materials = new Material[3];
     }
 
     void SnapObjectToLeftHand()
@@ -166,6 +165,7 @@ public class ObjectToHandScript : MonoBehaviour
         Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit);
         float posZ = hit.distance;
         Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, posZ));
+        pos.y = pos.y + 0.2f;
         return pos;
     }
     
