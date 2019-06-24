@@ -12,7 +12,8 @@ public class FinalScript : MonoBehaviour
 
     public Image logo;
 
-    public Text credits;
+    public Text credits1;
+    public Text credits2;
 
     public byte i = 0;
     public int j = 0;
@@ -23,7 +24,7 @@ public class FinalScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (!fondOk)
         {
             this.i++;
@@ -35,9 +36,9 @@ public class FinalScript : MonoBehaviour
                 fondOk = true;
             }
         }
-        if(fondOk && !logoOk)
+        if (fondOk && !logoOk)
         {
-            if(this.j < 355)
+            if (this.j < 355)
             {
                 j++;
             }
@@ -51,9 +52,9 @@ public class FinalScript : MonoBehaviour
                     this.j = 0;
                 }
             }
-            
+
         }
-        if (logoOk && !credits)
+        if (logoOk && !creditsOk)
         {
             if (this.j < 355)
             {
@@ -66,8 +67,13 @@ public class FinalScript : MonoBehaviour
                 if (this.i <= 0)
                 {
                     i++;
-                    this.credits.color = new Color32(255, 255, 255, this.i);
+                    this.credits1.color = new Color32(255, 255, 255, this.i);
+                    this.credits2.color = new Color32(255, 255, 255, this.i);
                     i++;
+                }
+                if (this.i >= 255)
+                {
+                    this.creditsOk = true;
                 }
             }
         }
