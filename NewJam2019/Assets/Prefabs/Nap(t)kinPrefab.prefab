@@ -1,7 +1,7 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!64 &-6285659330558782409
-MeshCollider:
+--- !u!65 &362665241952629298
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10,10 +10,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -3648987047848117448, guid: ce1db3abd12965c40b697dcd77f264f5, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.22026312, y: 0.064869314, z: 0.14848232}
+  m_Center: {x: -0.0020904988, y: 0, z: 0.0058681965}
 --- !u!1001 &5728090823957511889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31,6 +30,17 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Life
       objectReference: {fileID: 0}
+    - target: {fileID: 4877612699259322320, guid: 8a5e2bef2d0a3ab41bd7403922535700,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -3648987047848117448, guid: ce1db3abd12965c40b697dcd77f264f5,
+        type: 3}
+    - target: {fileID: 7711688866861529738, guid: 8a5e2bef2d0a3ab41bd7403922535700,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef72a68917df4864dba8575240d5eb2a, type: 2}
     - target: {fileID: 7104815081955776367, guid: 8a5e2bef2d0a3ab41bd7403922535700,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -86,17 +96,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4877612699259322320, guid: 8a5e2bef2d0a3ab41bd7403922535700,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -3648987047848117448, guid: ce1db3abd12965c40b697dcd77f264f5,
-        type: 3}
-    - target: {fileID: 7711688866861529738, guid: 8a5e2bef2d0a3ab41bd7403922535700,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ef72a68917df4864dba8575240d5eb2a, type: 2}
     m_RemovedComponents:
     - {fileID: 4827734638543933219, guid: 8a5e2bef2d0a3ab41bd7403922535700, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8a5e2bef2d0a3ab41bd7403922535700, type: 3}

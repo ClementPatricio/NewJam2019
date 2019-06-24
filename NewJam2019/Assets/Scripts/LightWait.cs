@@ -6,7 +6,7 @@ public class LightWait : MonoBehaviour
 {
     public float sec = 1f;
     private Light myLight;
-    public GameObject UI;
+    private GameObject UI;
     void Start()
     {
         myLight = GetComponent<Light>();
@@ -20,8 +20,8 @@ public class LightWait : MonoBehaviour
 
         yield return new WaitForSeconds(sec);
 
-        myLight.enabled = !myLight.enabled;
         this.GetComponent<AudioSource>().Play();
+        myLight.enabled = !myLight.enabled;
         UI.SetActive(true);
     }
 }
